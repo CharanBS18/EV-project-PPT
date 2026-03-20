@@ -35,7 +35,8 @@ gsap.set(".subscription-container", { xPercent: -50, yPercent: -50 });
 
 /* -------------------- 1. SPLASH -------------------- */
 masterTl.addLabel("scene1")
-    .to("#energy-dot", { scale: 5, boxShadow: "0 0 100px 50px rgba(37,99,235,0)", duration: 2, ease: "power2.out" })
+    .to("#initial-scroll-hint", { opacity: 0, duration: 0.5 })
+    .to("#energy-dot", { scale: 5, boxShadow: "0 0 100px 50px rgba(37,99,235,0)", duration: 2, ease: "power2.out" }, "<")
     .to("#map-wrapper", { opacity: 1, duration: 2 }, "-=1")
     .to("#energy-dot", { opacity: 0, duration: 1 }, "-=1")
     .to("#map-wrapper", { scale: 1, x: mapX, y: mapY, duration: 4, ease: "power3.inOut" }, "-=1")
@@ -64,7 +65,7 @@ masterTl.addLabel("scene1")
     .to("#ui-map-tools", { opacity: 1, y: 0, duration: 1 }, "<")
 
     /* -------------------- 5. DRIVING & LOCKED STATION -------------------- */
-    .to(".ev-car", { rotation: -30, duration: 1, ease: "power1.inOut" }, "+=0.5")
+    .to(".ev-car", { rotation: -20, duration: 1, ease: "power1.inOut" }, "+=0.5")
     .to("#map-wrapper", { x: 500, y: 100, duration: 8, ease: "power2.inOut" })
     .to("#active-route", { strokeDashoffset: -1500, duration: 8, ease: "none" }, "<")
     .to(".battery-level .fill", { width: "50%", duration: 8, ease: "none" }, "<")
@@ -116,7 +117,7 @@ masterTl.addLabel("scene1")
     .set("#ui-my-bookings", { visibility: "hidden" })
 
     /* -------------------- 10. DRIVE & NAVIGATION -------------------- */
-    .to(".ev-car", { rotation: 45, duration: 1, ease: "power1.inOut" })
+    .to(".ev-car", { rotation: 42, duration: 1, ease: "power1.inOut" })
     .to("#map-wrapper", { x: -500, y: 1200, duration: 6, ease: "power2.inOut" }, "<+=0.5")
     .to("#active-route", { strokeDashoffset: -4000, duration: 6, ease: "none" }, "<")
     .to(".battery-level .fill", { width: "20%", duration: 6, ease: "none" }, "<")
@@ -137,7 +138,7 @@ masterTl.addLabel("scene1")
     .to(["#ui-navigation", "#ui-filters"], { opacity: 0, duration: 1 }, "+=0.5")
     .set(["#ui-navigation", "#ui-filters"], { visibility: "hidden" })
 
-    .to(".charging-cable", { opacity: 1, duration: 0.5 }, "+=0.5")
+    .to([".charging-cable", "#ev-charger-model"], { opacity: 1, duration: 0.5 }, "+=0.5")
     .add("cable-draw")
     .to("#cable-path", { strokeDashoffset: 0, duration: 1, ease: "power2.out" }, "cable-draw")
     .to(".cable-pulse", { motionPath: { path: "#cable-path", align: "#cable-path", alignOrigin: [0.5, 0.5] }, duration: 1, repeat: 3, ease: "none" }, "cable-draw")
@@ -152,7 +153,7 @@ masterTl.addLabel("scene1")
 
     .to("#ui-charging", { opacity: 0, x: -50, duration: 1 }, "+=1")
     .set("#ui-charging", { visibility: "hidden" })
-    .to(".charging-cable", { opacity: 0, duration: 0.5 }, "<")
+    .to([".charging-cable", "#ev-charger-model"], { opacity: 0, duration: 0.5 }, "<")
 
     /* -------------------- 12. FINAL SCENE -------------------- */
     .to(["#ui-map-tools", ".battery-ui", "#car-container"], { opacity: 0, duration: 1 }, "+=2")

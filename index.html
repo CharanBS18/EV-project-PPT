@@ -11,6 +11,7 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" />
     <link rel="stylesheet" href="style.css">
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 </head>
 
 <body>
@@ -34,321 +35,318 @@
         <div class="scroll-section"></div>
         <div class="scroll-section"></div>
         <div class="scroll-section"></div>
-    <div class="sticky-viewport">
-        <div id="energy-dot"></div>
+        <div class="sticky-viewport">
+            <div id="energy-dot"></div>
 
-        <div id="map-wrapper">
-            <svg id="city-map" viewBox="0 0 3000 3000" width="3000" height="3000">
-                <defs>
-                    <pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse">
-                        <path d="M 100 0 L 0 0 0 100" fill="none" stroke="var(--map-line)" stroke-width="1" />
-                    </pattern>
-                    <radialGradient id="glow-green" cx="50%" cy="50%" r="50%">
-                        <stop offset="0%" stop-color="rgba(34, 197, 94, 0.4)" />
-                        <stop offset="100%" stop-color="rgba(34, 197, 94, 0)" />
-                    </radialGradient>
-                    <radialGradient id="glow-blue" cx="50%" cy="50%" r="50%">
-                        <stop offset="0%" stop-color="rgba(37, 99, 235, 0.4)" />
-                        <stop offset="100%" stop-color="rgba(37, 99, 235, 0)" />
-                    </radialGradient>
-                </defs>
+            <div id="map-wrapper">
+                <svg id="city-map" viewBox="0 0 3000 3000" width="3000" height="3000">
+                    <defs>
+                        <pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse">
+                            <path d="M 100 0 L 0 0 0 100" fill="none" stroke="var(--map-line)" stroke-width="1" />
+                        </pattern>
+                        <radialGradient id="glow-green" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="rgba(34, 197, 94, 0.4)" />
+                            <stop offset="100%" stop-color="rgba(34, 197, 94, 0)" />
+                        </radialGradient>
+                        <radialGradient id="glow-blue" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="rgba(37, 99, 235, 0.4)" />
+                            <stop offset="100%" stop-color="rgba(37, 99, 235, 0)" />
+                        </radialGradient>
+                    </defs>
 
-                <rect class="map-bg" width="3000" height="3000" fill="url(#grid)" />
+                    <rect class="map-bg" width="3000" height="3000" fill="url(#grid)" />
 
-                <path d="M500,3000 C800,2000 200,1500 1200,1200 C2200,900 2800,1800 2800,500 M2200,3000 C1500,2200 2500,1500 1200,800 C-100,200 800,-200 1800,100"
-                    stroke="var(--map-line)" stroke-width="10" fill="none" />
+                    <path
+                        d="M500,3000 C800,2000 200,1500 1200,1200 C2200,900 2800,1800 2800,500 M2200,3000 C1500,2200 2500,1500 1200,800 C-100,200 800,-200 1800,100"
+                        stroke="var(--map-line)" stroke-width="10" fill="none" />
 
-                <!-- Route paths -->
-                <path id="base-route" class="route-base" stroke-linejoin="round" d="M1500,2800 C1500,2000 1000,1800 1000,1400 C1000,1000 2000,800 2000,300"
-                    fill="none" stroke="var(--route-base)" stroke-width="20" stroke-linecap="round" />
+                    <!-- Route paths -->
+                    <path id="base-route" class="route-base" stroke-linejoin="round"
+                        d="M1500,2800 L1000,1400 L2000,300" fill="none"
+                        stroke="var(--route-base)" stroke-width="20" stroke-linecap="round" />
 
-                <path id="active-route" class="route-glow neon-blue" stroke-linejoin="round"
-                    d="M1500,2800 C1500,2000 1000,1800 1000,1400 C1000,1000 2000,800 2000,300" fill="none" stroke="var(--accent-blue)" stroke-width="8"
-                    stroke-linecap="round" />
+                    <path id="active-route" class="route-glow neon-blue" stroke-linejoin="round"
+                        d="M1500,2800 L1000,1400 L2000,300" fill="none"
+                        stroke="var(--accent-blue)" stroke-width="8" stroke-linecap="round" />
 
-                <g class="station" id="station-1" transform="translate(1000, 1400)">
-                    <circle class="radar" cx="0" cy="0" r="150" fill="url(#glow-green)" opacity="0" />
-                    <circle class="radar-ring" cx="0" cy="0" r="150" fill="none" stroke="var(--accent-green)" stroke-width="2"
-                        opacity="0" />
-                    <circle class="base-circle" cx="0" cy="0" r="30" fill="var(--card-dark)" stroke="var(--border-soft)"
-                        stroke-width="2" />
-                    <circle class="core" cx="0" cy="0" r="10" fill="var(--accent-green)" />
-                </g>
+                    <g class="station" id="station-1" transform="translate(1000, 1400)">
+                        <circle class="radar" cx="0" cy="0" r="150" fill="url(#glow-green)" opacity="0" />
+                        <circle class="radar-ring" cx="0" cy="0" r="150" fill="none" stroke="var(--accent-green)"
+                            stroke-width="2" opacity="0" />
+                        <circle class="base-circle" cx="0" cy="0" r="30" fill="var(--card-dark)"
+                            stroke="var(--border-soft)" stroke-width="2" />
+                        <circle class="core" cx="0" cy="0" r="10" fill="var(--accent-green)" />
+                    </g>
 
-                <g class="station" id="station-2" transform="translate(2000, 300)">
-                    <circle class="radar" cx="0" cy="0" r="150" fill="url(#glow-blue)" opacity="0" />
-                    <circle class="radar-ring" cx="0" cy="0" r="150" fill="none" stroke="var(--accent-blue)" stroke-width="2"
-                        opacity="0" />
-                    <circle class="base-circle" cx="0" cy="0" r="30" fill="var(--card-dark)" stroke="var(--border-soft)"
-                        stroke-width="2" />
-                    <circle class="core" cx="0" cy="0" r="10" fill="#2563EB" />
-                </g>
+                    <g class="station" id="station-2" transform="translate(2000, 300)">
+                        <circle class="radar" cx="0" cy="0" r="150" fill="url(#glow-blue)" opacity="0" />
+                        <circle class="radar-ring" cx="0" cy="0" r="150" fill="none" stroke="var(--accent-blue)"
+                            stroke-width="2" opacity="0" />
+                        <circle class="base-circle" cx="0" cy="0" r="30" fill="var(--card-dark)"
+                            stroke="var(--border-soft)" stroke-width="2" />
+                        <circle class="core" cx="0" cy="0" r="10" fill="#2563EB" />
+                    </g>
 
-                <g class="station extra-station" transform="translate(800, 600)">
-                    <circle class="base-circle" cx="0" cy="0" r="30" fill="#1F2937" stroke="rgba(255,255,255,0.1)"
-                        stroke-width="2" />
-                    <circle class="core" cx="0" cy="0" r="10" fill="#06B6D4" />
-                </g>
-            </svg>
-        </div>
-
-        <div id="night-overlay"></div>
-
-        <div id="car-container">
-            <div class="battery-ui">
-                <span class="material-symbols-rounded">battery_charging_full</span>
-                <div class="battery-level">
-                    <div class="fill"></div>
-                </div>
-                <span class="battery-text">80%</span>
+                    <g class="station extra-station" transform="translate(800, 600)">
+                        <circle class="base-circle" cx="0" cy="0" r="30" fill="#1F2937" stroke="rgba(255,255,255,0.1)"
+                            stroke-width="2" />
+                        <circle class="core" cx="0" cy="0" r="10" fill="#06B6D4" />
+                    </g>
+                </svg>
             </div>
 
-            <svg class="charging-cable" viewBox="0 0 100 100" width="100" height="100">
-                <path id="cable-path" d="M90,50 Q50,90 10,50" fill="none" stroke="#22C55E" stroke-width="6"
-                    stroke-linecap="round" />
-                <circle class="cable-pulse" cx="90" cy="50" r="6" fill="var(--accent-blue)" filter="drop-shadow(0 0 4px var(--accent-blue))" />
-            </svg>
+            <div id="night-overlay"></div>
 
-            <svg class="ev-car" viewBox="0 0 60 120" width="60" height="120">
-                <rect class="car-body" x="5" y="5" width="50" height="110" rx="15" fill="#1F2937" stroke="#2563EB"
-                    stroke-width="2" />
-                <path d="M10,35 Q30,30 50,35 L45,50 L15,50 Z" fill="#0B1220" />
-                <rect x="15" y="50" width="30" height="40" rx="5" fill="#111827" />
-                <path d="M15,90 L45,90 L40,100 Q30,105 20,100 Z" fill="#0B1220" />
-                <rect class="headlight-beam left-beam" x="-10" y="-80" width="30" height="80" fill="url(#glow-blue)"
-                    opacity="0" />
-                <rect class="headlight-beam right-beam" x="40" y="-80" width="30" height="80" fill="url(#glow-blue)"
-                    opacity="0" />
-                <rect class="light" x="10" y="5" width="10" height="4" fill="white" rx="2"
-                    style="filter: drop-shadow(0 -5px 5px white)" />
-                <rect class="light" x="40" y="5" width="10" height="4" fill="white" rx="2"
-                    style="filter: drop-shadow(0 -5px 5px white)" />
-                <rect class="tail-light" x="10" y="111" width="12" height="4" fill="red" rx="2"
-                    style="filter: drop-shadow(0 5px 5px red)" />
-                <rect class="tail-light" x="38" y="111" width="12" height="4" fill="red" rx="2"
-                    style="filter: drop-shadow(0 5px 5px red)" />
-            </svg>
-        </div>
-
-        <div class="narrative-layer">
-
-            <!-- 1. Splash -->
-            <div class="scene" id="scene-splash">
-                <div class="logo-circle"><span class="material-symbols-rounded"
-                        style="font-size: 48px;">ev_charger</span></div>
-                <h1 class="gradient-text hero-title" style="margin-bottom:10px;">VoltGo</h1>
-                <p class="subtitle fade">Find & Book EV Charging Stations</p>
-            </div>
-
-            <!-- 2. Onboarding -->
-            <div class="glass-panel" id="ui-onboarding">
-                <span class="material-symbols-rounded icon-accent">map</span>
-                <h3 class="mb-4">Welcome to VoltGo</h3>
-                <ul class="feature-list">
-                    <li><span class="material-symbols-rounded list-icon">check_circle</span> Find nearby charging
-                        stations</li>
-                    <li><span class="material-symbols-rounded list-icon">check_circle</span> Check real-time
-                        availability</li>
-                    <li><span class="material-symbols-rounded list-icon">check_circle</span> Book slots with Premium
-                    </li>
-                </ul>
-                <button class="btn-glow w-100 mt-10">Get Started</button>
-            </div>
-
-            <!-- 3. Permission -->
-            <div class="glass-panel text-center center" id="ui-permission">
-                <span class="material-symbols-rounded icon-accent mb-4" style="font-size: 48px;">location_on</span>
-                <h3 class="mb-2">Allow Location Access</h3>
-                <p class="mb-6">We use your location to find nearby stations on the map.</p>
-                <div class="w-100">
-                    <button class="btn-glow w-100 mb-2">Allow While Using App</button>
-                    <button class="btn-secondary w-100">Skip</button>
-                </div>
-            </div>
-
-            <!-- 4. Map Tools -->
-            <div class="top-bar-overlay" id="ui-map-tools">
-                <div class="search-box glass-panel-sm">
-                    <span class="material-symbols-rounded">search</span>
-                    <span>Search location...</span>
-                </div>
-                <div class="glass-panel-sm filter-icon">
-                    <span class="material-symbols-rounded">tune</span>
-                </div>
-            </div>
-
-            <!-- 5. Station Locked (Free User) -->
-            <div class="glass-panel" id="ui-station-locked">
-                <div class="flex-row space-between align-center mb-4">
-                    <div>
-                        <h3>City Center Supercharger</h3>
-                        <p>1.2 mi away • Fast (250kW)</p>
+            <div id="car-container">
+                <div class="battery-ui">
+                    <span class="material-symbols-rounded">battery_charging_full</span>
+                    <div class="battery-level">
+                        <div class="fill"></div>
                     </div>
+                    <span class="battery-text">80%</span>
                 </div>
-                <div class="locked-container">
-                    <div class="lock-icon"><span class="material-symbols-rounded">lock</span></div>
-                    <p class="font-medium mt-4">Booking Locked</p>
-                    <p class="text-sm mb-6">Upgrade to Premium to book slots</p>
-                    <div class="flex-row gap-2 w-100">
+
+                <model-viewer id="ev-charger-model" src="ev charging .glb" camera-orbit="0deg 45deg 100%" disable-zoom
+                    disable-pan
+                    style="position: absolute; left: 240px; top: 100px; width: 100px; height: 100px; transform: translate(-50%, -50%); opacity: 0; z-index: 60;"></model-viewer>
+
+                <svg class="charging-cable" viewBox="0 0 100 100" width="200" height="100" preserveAspectRatio="none">
+                    <path id="cable-path" d="M90,50 Q50,90 10,50" fill="none" stroke="#22C55E" stroke-width="6"
+                        stroke-linecap="round" />
+                    <circle class="cable-pulse" cx="90" cy="50" r="6" fill="var(--accent-blue)"
+                        filter="drop-shadow(0 0 4px var(--accent-blue))" />
+                </svg>
+
+                <model-viewer class="ev-car" src="car.glb" orientation="0 0 180deg" camera-orbit="0deg 20deg 100%"
+                    disable-zoom disable-pan style="width: 180px; height: 180px; margin-top: -30px;"></model-viewer>
+            </div>
+
+            <div class="narrative-layer">
+            <div class="scroll-indicator" id="initial-scroll-hint">
+                <p class="text-sm font-medium mb-2 text-muted" style="letter-spacing: 1px;">SCROLL TO EXPLORE</p>
+                <span class="material-symbols-rounded bounce-arrow">keyboard_double_arrow_down</span>
+            </div>
+
+                <!-- 1. Splash -->
+                <div class="scene" id="scene-splash">
+                    <div class="logo-circle"><span class="material-symbols-rounded"
+                            style="font-size: 48px;">ev_charger</span></div>
+                    <h1 class="gradient-text hero-title" style="margin-bottom:10px;">VoltGo</h1>
+                    <p class="subtitle fade">Find & Book EV Charging Stations</p>
+                </div>
+
+                <!-- 2. Onboarding -->
+                <div class="glass-panel" id="ui-onboarding">
+                    <span class="material-symbols-rounded icon-accent">map</span>
+                    <h3 class="mb-4">Welcome to VoltGo</h3>
+                    <ul class="feature-list">
+                        <li><span class="material-symbols-rounded list-icon">check_circle</span> Find nearby charging
+                            stations</li>
+                        <li><span class="material-symbols-rounded list-icon">check_circle</span> Check real-time
+                            availability</li>
+                        <li><span class="material-symbols-rounded list-icon">check_circle</span> Book slots with Premium
+                        </li>
+                    </ul>
+                    <button class="btn-glow w-100 mt-10">Get Started</button>
+                </div>
+
+                <!-- 3. Permission -->
+                <div class="glass-panel text-center center" id="ui-permission">
+                    <span class="material-symbols-rounded icon-accent mb-4" style="font-size: 48px;">location_on</span>
+                    <h3 class="mb-2">Allow Location Access</h3>
+                    <p class="mb-6">We use your location to find nearby stations on the map.</p>
+                    <div class="w-100">
+                        <button class="btn-glow w-100 mb-2">Allow While Using App</button>
                         <button class="btn-secondary w-100">Skip</button>
-                        <button class="btn-glow w-100">Upgrade</button>
                     </div>
                 </div>
-            </div>
 
-            <!-- 6. Subscription Comparing -->
-            <div class="subscription-container text-center" id="ui-subscriptions">
-                <h2 class="mb-6 text-main">Choose Your Plan</h2>
-                <div class="plans-wrapper">
-                    <!-- Free Plan -->
-                    <div class="glass-panel plan-card">
-                        <h3 class="mb-2">Normal Plan</h3>
-                        <h1 class="price mb-4 text-main">Free</h1>
-                        <ul class="feature-list align-left">
-                            <li><span class="material-symbols-rounded list-icon green">check</span> View stations</li>
-                        </ul>
+                <!-- 4. Map Tools -->
+                <div class="top-bar-overlay" id="ui-map-tools">
+                    <div class="search-box glass-panel-sm">
+                        <span class="material-symbols-rounded">search</span>
+                        <span>Search location...</span>
                     </div>
-                    <!-- Premium Plan -->
-                    <div class="glass-panel plan-card premium-border position-relative">
-                        <div class="premium-badge">MOST POPULAR</div>
-                        <h3 class="mb-2">Premium Plan</h3>
-                        <h1 class="price mb-4 text-main">$9.99<span class="text-sm">/mo</span></h1>
-                        <ul class="feature-list align-left">
-                            <li><span class="material-symbols-rounded list-icon accent">check</span> Book slots</li>
-                            <li><span class="material-symbols-rounded list-icon accent">check</span> Priority access
-                            </li>
-                        </ul>
-                        <button class="btn-glow w-100 mt-10">Subscribe</button>
+                    <div class="glass-panel-sm filter-icon">
+                        <span class="material-symbols-rounded">tune</span>
                     </div>
                 </div>
-                <!-- Mock Payment -->
-                <div class="mock-payment center" id="payment-success">
-                    <button class="pay-btn">
-                        <span class="btn-text">Payment Successful</span>
-                        <div class="icon-container">
-                            <svg viewBox="0 0 24 24" class="icon card-icon">
-                                <path
-                                    d="M20,8H4V6H20M20,18H4V12H20M20,4H4C2.89,4 2,4.89 2,6V18C2,19.11 2.89,20 4,20H20C21.11,20 22,19.11 22,18V6C22,4.89 21.11,4 20,4Z"
-                                    fill="currentColor"></path>
-                            </svg>
-                            <svg viewBox="0 0 24 24" class="icon payment-icon">
-                                <path
-                                    d="M2,17H22V21H2V17M6.25,7H9V6H6V3H18V6H15V7H17.75L19,17H5L6.25,7M9,10H15V8H9V10M9,13H15V11H9V13Z"
-                                    fill="currentColor"></path>
-                            </svg>
-                            <svg viewBox="0 0 24 24" class="icon dollar-icon">
-                                <path
-                                    d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"
-                                    fill="currentColor"></path>
-                            </svg>
-                            <svg viewBox="0 0 24 24" class="icon check-icon">
-                                <path d="M9,16.17L4.83,12L3.41,13.41L9,19L21,7L19.59,5.59L9,16.17Z" fill="currentColor">
-                                </path>
-                            </svg>
+
+                <!-- 5. Station Locked (Free User) -->
+                <div class="glass-panel" id="ui-station-locked">
+                    <div class="flex-row space-between align-center mb-4">
+                        <div>
+                            <h3>City Center Supercharger</h3>
+                            <p>1.2 mi away • Fast (250kW)</p>
                         </div>
-                    </button>
-                </div>
-            </div>
-
-            <!-- 7. Station Unlocked (Premium User) -->
-            <div class="glass-panel" id="ui-station-premium">
-                <div class="flex-row space-between align-center mb-6">
-                    <div>
-                        <h3>City Center Supercharger</h3>
-                        <p>1.2 mi away • Fast (250kW)</p>
                     </div>
-                    <div class="badge-green">2/5 Slots</div>
-                </div>
-                <p class="font-medium mb-2">Select Time Slot</p>
-                <div class="slot-grid">
-                    <div class="slot">10:00 AM</div>
-                    <div class="slot active">10:30 AM</div>
-                    <div class="slot">11:00 AM</div>
-                </div>
-                <button class="btn-glow w-100 mt-10">Confirm Booking</button>
-            </div>
-
-            <!-- 8. Booking Confirmation -->
-            <div class="glass-panel center" id="ui-confirmation">
-                <span class="material-symbols-rounded green mb-4" style="font-size:48px;">check_circle</span>
-                <h2 class="mb-4">Booking Confirmed</h2>
-                <p class="mb-6">Your slot at <b>City Center</b> is reserved.</p>
-                <div class="w-100">
-                    <button class="btn-secondary w-100">View Booking</button>
-                    <button class="btn-glow w-100 mt-4">Close Info</button>
-                </div>
-            </div>
-
-            <!-- Charging Real-time Experience -->
-            <div class="glass-panel" id="ui-charging">
-                <div class="charge-header">
-                    <span class="material-symbols-rounded green" style="font-size:32px;">bolt</span>
-                    <h3 class="green">Ultra-Fast Session</h3>
-                </div>
-                <h1 class="charge-speed mt-4 mb-2">250 kW</h1>
-                <p class="text-muted">Adding 150 miles in 10 minutes</p>
-                <div class="charge-progress-bar">
-                    <div class="fill"></div>
-                </div>
-            </div>
-
-            <!-- 9. My Bookings / Details -->
-            <div class="glass-panel" id="ui-my-bookings">
-                <h2 class="mb-4">My Bookings</h2>
-                <div class="flex-row tabs mb-4">
-                    <div class="tab active text-accent">Upcoming</div>
-                    <div class="tab text-muted">Active</div>
-                    <div class="tab text-muted">Completed</div>
-                </div>
-                <div class="booking-item bg-dark p-4 rounded border-soft">
-                    <div class="flex-row space-between mb-2">
-                        <h4 class="font-medium text-main">City Center</h4>
-                        <div class="badge-accent text-sm">Upcoming</div>
+                    <div class="locked-container">
+                        <div class="lock-icon"><span class="material-symbols-rounded">lock</span></div>
+                        <p class="font-medium mt-4">Booking Locked</p>
+                        <p class="text-sm mb-6">Upgrade to Premium to book slots</p>
+                        <div class="flex-row gap-2 w-100">
+                            <button class="btn-secondary w-100">Skip</button>
+                            <button class="btn-glow w-100">Upgrade</button>
+                        </div>
                     </div>
-                    <p class="text-sm">Today, 10:30 AM - 11:00 AM</p>
                 </div>
-            </div>
 
-            <!-- 10. Navigation -->
-            <div class="glass-panel" id="ui-navigation">
-                <div class="nav-stats">
-                    <div class="stat"><span class="val green"><span
-                                class="material-symbols-rounded">near_me</span></span><span class="lbl">NAVIGATE</span>
+                <!-- 6. Subscription Comparing -->
+                <div class="subscription-container text-center" id="ui-subscriptions">
+                    <h2 class="mb-6 text-main">Choose Your Plan</h2>
+                    <div class="plans-wrapper">
+                        <!-- Free Plan -->
+                        <div class="glass-panel plan-card">
+                            <h3 class="mb-2">Normal Plan</h3>
+                            <h1 class="price mb-4 text-main">Free</h1>
+                            <ul class="feature-list align-left">
+                                <li><span class="material-symbols-rounded list-icon green">check</span> View stations
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Premium Plan -->
+                        <div class="glass-panel plan-card premium-border position-relative">
+                            <div class="premium-badge">MOST POPULAR</div>
+                            <h3 class="mb-2">Premium Plan</h3>
+                            <h1 class="price mb-4 text-main">$9.99<span class="text-sm">/mo</span></h1>
+                            <ul class="feature-list align-left">
+                                <li><span class="material-symbols-rounded list-icon accent">check</span> Book slots</li>
+                                <li><span class="material-symbols-rounded list-icon accent">check</span> Priority access
+                                </li>
+                            </ul>
+                            <button class="btn-glow w-100 mt-10">Subscribe</button>
+                        </div>
                     </div>
-                    <div class="stat"><span class="val green">5m</span><span class="lbl">ETA</span></div>
-                    <div class="stat"><span class="val">1.2 mi</span><span class="lbl">DIST</span></div>
+                    <!-- Mock Payment -->
+                    <div class="mock-payment center" id="payment-success">
+                        <button class="pay-btn">
+                            <span class="btn-text">Payment Successful</span>
+                            <div class="icon-container">
+                                <svg viewBox="0 0 24 24" class="icon card-icon">
+                                    <path
+                                        d="M20,8H4V6H20M20,18H4V12H20M20,4H4C2.89,4 2,4.89 2,6V18C2,19.11 2.89,20 4,20H20C21.11,20 22,19.11 22,18V6C22,4.89 21.11,4 20,4Z"
+                                        fill="currentColor"></path>
+                                </svg>
+                                <svg viewBox="0 0 24 24" class="icon payment-icon">
+                                    <path
+                                        d="M2,17H22V21H2V17M6.25,7H9V6H6V3H18V6H15V7H17.75L19,17H5L6.25,7M9,10H15V8H9V10M9,13H15V11H9V13Z"
+                                        fill="currentColor"></path>
+                                </svg>
+                                <svg viewBox="0 0 24 24" class="icon dollar-icon">
+                                    <path
+                                        d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"
+                                        fill="currentColor"></path>
+                                </svg>
+                                <svg viewBox="0 0 24 24" class="icon check-icon">
+                                    <path d="M9,16.17L4.83,12L3.41,13.41L9,19L21,7L19.59,5.59L9,16.17Z"
+                                        fill="currentColor">
+                                    </path>
+                                </svg>
+                            </div>
+                        </button>
+                    </div>
                 </div>
-            </div>
 
-            <!-- 11. Filters -->
-            <div class="glass-panel" id="ui-filters">
-                <div class="flex-row space-between align-center mb-4">
-                    <h3>Smart Filters</h3>
-                    <span class="material-symbols-rounded text-accent">tune</span>
+                <!-- 7. Station Unlocked (Premium User) -->
+                <div class="glass-panel" id="ui-station-premium">
+                    <div class="flex-row space-between align-center mb-6">
+                        <div>
+                            <h3>City Center Supercharger</h3>
+                            <p>1.2 mi away • Fast (250kW)</p>
+                        </div>
+                        <div class="badge-green">2/5 Slots</div>
+                    </div>
+                    <p class="font-medium mb-2">Select Time Slot</p>
+                    <div class="slot-grid">
+                        <div class="slot">10:00 AM</div>
+                        <div class="slot active">10:30 AM</div>
+                        <div class="slot">11:00 AM</div>
+                    </div>
+                    <button class="btn-glow w-100 mt-10">Confirm Booking</button>
                 </div>
-                <div class="chips">
-                    <div class="chip active">Fast (150kW+)</div>
-                    <div class="chip">Available Now</div>
-                    <div class="chip">Price: Free</div>
+
+                <!-- 8. Booking Confirmation -->
+                <div class="glass-panel center" id="ui-confirmation">
+                    <span class="material-symbols-rounded green mb-4" style="font-size:48px;">check_circle</span>
+                    <h2 class="mb-4">Booking Confirmed</h2>
+                    <p class="mb-6">Your slot at <b>City Center</b> is reserved.</p>
+                    <div class="w-100">
+                        <button class="btn-secondary w-100">View Booking</button>
+                        <button class="btn-glow w-100 mt-4">Close Info</button>
+                    </div>
                 </div>
-            </div>
 
-            <!-- 12. Final -->
-            <div class="scene" id="scene-final">
-                <h1 class="gradient-text final-title">Charge Smarter.<br>Drive Further.</h1>
-                <h2 class="thank-you-text text-light"
-                    style="margin-top: 30px; font-size: 2rem; font-weight: 300; letter-spacing: 2px;">Thank You</h2>
-            </div>
+                <!-- Charging Real-time Experience -->
+                <div class="glass-panel" id="ui-charging">
+                    <div class="charge-header">
+                        <span class="material-symbols-rounded green" style="font-size:32px;">bolt</span>
+                        <h3 class="green">Ultra-Fast Session</h3>
+                    </div>
+                    <h1 class="charge-speed mt-4 mb-2">250 kW</h1>
+                    <p class="text-muted">Adding 150 miles in 10 minutes</p>
+                    <div class="charge-progress-bar">
+                        <div class="fill"></div>
+                    </div>
+                </div>
 
+                <!-- 9. My Bookings / Details -->
+                <div class="glass-panel" id="ui-my-bookings">
+                    <h2 class="mb-4">My Bookings</h2>
+                    <div class="flex-row tabs mb-4">
+                        <div class="tab active text-accent">Upcoming</div>
+                        <div class="tab text-muted">Active</div>
+                        <div class="tab text-muted">Completed</div>
+                    </div>
+                    <div class="booking-item bg-dark p-4 rounded border-soft">
+                        <div class="flex-row space-between mb-2">
+                            <h4 class="font-medium text-main">City Center</h4>
+                            <div class="badge-accent text-sm">Upcoming</div>
+                        </div>
+                        <p class="text-sm">Today, 10:30 AM - 11:00 AM</p>
+                    </div>
+                </div>
+
+                <!-- 10. Navigation -->
+                <div class="glass-panel" id="ui-navigation">
+                    <div class="nav-stats">
+                        <div class="stat"><span class="val green"><span
+                                    class="material-symbols-rounded">near_me</span></span><span
+                                class="lbl">NAVIGATE</span>
+                        </div>
+                        <div class="stat"><span class="val green">5m</span><span class="lbl">ETA</span></div>
+                        <div class="stat"><span class="val">1.2 mi</span><span class="lbl">DIST</span></div>
+                    </div>
+                </div>
+
+                <!-- 11. Filters -->
+                <div class="glass-panel" id="ui-filters">
+                    <div class="flex-row space-between align-center mb-4">
+                        <h3>Smart Filters</h3>
+                        <span class="material-symbols-rounded text-accent">tune</span>
+                    </div>
+                    <div class="chips">
+                        <div class="chip active">Fast (150kW+)</div>
+                        <div class="chip">Available Now</div>
+                        <div class="chip">Price: Free</div>
+                    </div>
+                </div>
+
+                <!-- 12. Final -->
+                <div class="scene" id="scene-final">
+                    <h1 class="gradient-text final-title">Charge Smarter.<br>Drive Further.</h1>
+                    <h2 class="thank-you-text text-light"
+                        style="margin-top: 30px; font-size: 2rem; font-weight: 300; letter-spacing: 2px;">Thank You</h2>
+                </div>
+
+            </div>
         </div>
-    </div>
 
-    <!-- GSAP / ScrollTrigger & Lenis -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/MotionPathPlugin.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
-    <script src="script.js"></script>
+        <!-- GSAP / ScrollTrigger & Lenis -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/MotionPathPlugin.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+        <script src="script.js"></script>
 </body>
 
 </html>
