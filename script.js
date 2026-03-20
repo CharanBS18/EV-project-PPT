@@ -28,6 +28,11 @@ gsap.set("#active-route", { strokeDashoffset: 0, strokeDasharray: 4000 });
 gsap.set(".battery-ui", { opacity: 0, y: 10 });
 let mapX = 0, mapY = -1300;
 
+// Responsive Centering Matrix
+gsap.set(["#ui-onboarding", "#ui-permission", "#ui-station-locked", "#ui-station-premium", "#ui-confirmation", "#ui-my-bookings", "#ui-filters", "#ui-charging"], { yPercent: -50, xPercent: 0 });
+gsap.set("#ui-navigation", { xPercent: -50, yPercent: 0 });
+gsap.set(".subscription-container", { xPercent: -50, yPercent: -50 });
+
 /* -------------------- 1. SPLASH -------------------- */
 masterTl.addLabel("scene1")
     .to("#energy-dot", { scale: 5, boxShadow: "0 0 100px 50px rgba(37,99,235,0)", duration: 2, ease: "power2.out" })
