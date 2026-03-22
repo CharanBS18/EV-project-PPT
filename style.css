@@ -1,16 +1,16 @@
 :root {
-    --bg-dark: #F8FAFC;
-    --surface: rgba(255, 255, 255, 0.8);
-    --border-soft: rgba(0, 0, 0, 0.1);
-    --card-dark: #FFFFFF;
-    --accent-blue: #2563EB;
-    --accent-green: #22C55E;
-    --accent-light: #60A5FA;
-    --gradient: linear-gradient(135deg, #3B82F6, #06B6D4, #22C55E);
-    --text-main: #0F172A;
-    --text-muted: #64748B;
-    --map-line: rgba(0,0,0,0.06);
-    --route-base: rgba(0,0,0,0.1);
+    --bg-dark: #0f172a;
+    --surface: rgba(30, 41, 59, 0.65);
+    --border-soft: rgba(255, 255, 255, 0.1);
+    --card-dark: #1e293b;
+    --accent-blue: #3b82f6;
+    --accent-green: #10b981;
+    --accent-light: #60a5fa;
+    --gradient: linear-gradient(135deg, #10b981, #3b82f6);
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --map-line: rgba(255,255,255,0.05);
+    --route-base: rgba(255,255,255,0.1);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
@@ -56,11 +56,15 @@ html.lenis, html.lenis body { height: auto; }
 .green { color: var(--accent-green); }
 .icon-accent { color: var(--accent-light); font-size: 32px; margin-bottom: 12px; }
 
-.btn-primary { background: var(--text-main); border: 1px solid var(--border-soft); padding: 14px 24px; border-radius: 12px; color: var(--bg-dark); font-weight: 600; cursor: pointer; transition: 0.3s; }
-.btn-secondary { background: var(--surface); border: 1px solid var(--border-soft); color: var(--text-main); padding: 14px 24px; border-radius: 12px; cursor: pointer; transition: 0.3s; font-weight: 600; }
-.btn-glow { background: var(--gradient); border: none; padding: 14px 24px; border-radius: 12px; color: white; font-weight: 600; cursor: pointer; box-shadow: 0 0 20px rgba(37, 99, 235, 0.5); }
+.btn-primary { background: var(--text-main); border: 1px solid var(--border-soft); padding: 14px 24px; border-radius: 100px; color: var(--bg-dark); font-weight: 600; cursor: pointer; transition: 0.3s; }
+.btn-primary:hover { transform: scale(1.02); }
+.btn-secondary { background: var(--surface); border: 1px solid var(--border-soft); color: var(--text-main); padding: 14px 24px; border-radius: 100px; cursor: pointer; transition: 0.3s; font-weight: 600; }
+.btn-secondary:hover { background: rgba(255, 255, 255, 0.1); transform: scale(1.02); }
+.btn-glow { background: var(--gradient); border: none; padding: 14px 24px; border-radius: 100px; color: white; font-weight: 600; cursor: pointer; box-shadow: 0 0 20px rgba(59, 130, 246, 0.4); transition: 0.3s; }
+.btn-glow:hover { box-shadow: 0 0 30px rgba(16, 185, 129, 0.6); transform: scale(1.02); }
 
 /* Typography */
+h1, h2, h3, .scene h1, .gradient-text { font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.02em; }
 .gradient-text { background: var(--gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
 
 /* Map Setup */
@@ -82,7 +86,7 @@ html.lenis, html.lenis body { height: auto; }
 .subtitle { font-size: 1.5rem; color: var(--text-muted); margin-top: 10px; }
 
 /* Glass Panel Base */
-.glass-panel { position: absolute; background: var(--surface); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--border-soft); border-radius: 24px; padding: 24px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1); color: var(--text-main); opacity: 0; visibility: hidden; pointer-events: auto; will-change: transform, opacity; transform: translateZ(0); backface-visibility: hidden; }
+.glass-panel { position: absolute; background: var(--surface); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid var(--border-soft); border-radius: 24px; padding: 24px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5); color: var(--text-main); opacity: 0; visibility: hidden; pointer-events: auto; will-change: transform, opacity; transform: translateZ(0); backface-visibility: hidden; }
 .glass-panel h3 { font-size: 1.2rem; font-weight: 600; }
 .glass-panel p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; }
 
@@ -92,7 +96,7 @@ html.lenis, html.lenis body { height: auto; }
 .list-icon { font-size: 20px; }
 
 .top-bar-overlay { position: absolute; top: 40px; left: 24px; right: 24px; display: flex; justify-content: space-between; gap: 12px; opacity: 0; visibility: hidden; pointer-events: none; }
-.glass-panel-sm { background: var(--surface); backdrop-filter: blur(16px); border: 1px solid var(--border-soft); border-radius: 100px; padding: 12px 20px; display: flex; align-items: center; gap: 8px; pointer-events: auto; color: var(--text-main); }
+.glass-panel-sm { background: var(--surface); backdrop-filter: blur(24px); border: 1px solid var(--border-soft); border-radius: 100px; padding: 12px 20px; display: flex; align-items: center; gap: 8px; pointer-events: auto; color: var(--text-main); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); }
 .filter-icon { padding: 12px; }
 
 .locked-container { background: var(--surface); border: 1px dashed var(--border-soft); border-radius: 16px; padding: 20px; text-align: center; margin-top: 16px; }
@@ -115,7 +119,7 @@ html.lenis, html.lenis body { height: auto; }
 .tab { font-size: 0.95rem; cursor: pointer; padding: 8px 0; position: relative; font-weight: 500; }
 .tab.active::after { content: ''; position: absolute; bottom: -9px; left: 0; width: 100%; height: 2px; background: var(--accent-light); }
 
-.badge-green { background: rgba(34,197,94,0.15); color: var(--accent-green); border: 1px solid rgba(34,197,94,0.3); padding: 6px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 600; }
+.badge-green { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid rgba(16, 185, 129, 0.3); padding: 6px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 600; box-shadow: 0 0 10px rgba(16, 185, 129, 0.2); }
 .badge-accent { background: var(--gradient); color: white; padding: 4px 10px; border-radius: 100px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.5px; }
 
 .nav-stats { display: flex; gap: 32px; justify-content: center; }
@@ -170,7 +174,7 @@ html.lenis, html.lenis body { height: auto; }
 /* From Uiverse.io by fthisilak */ 
 .pay-btn { position: relative; padding: 12px 24px; font-size: 16px; background: rgba(255,255,255,0.05); color: white; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; cursor: default; display: flex; align-items: center; gap: 10px; margin: 0 auto; pointer-events: auto; }
 .icon-container { position: relative; width: 24px; height: 24px; }
-.icon { position: absolute; top: 0; left: 0; width: 24px; height: 24px; color: #22c55e; opacity: 0; visibility: hidden; }
+.icon { position: absolute; top: 0; left: 0; width: 24px; height: 24px; color: #10b981; opacity: 0; visibility: hidden; }
 
 /* Auto Hover animations */
 .pay-btn .card-icon { animation: iconRotate 2.5s infinite; animation-delay: 0s; }

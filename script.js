@@ -130,7 +130,7 @@ masterTl.addLabel("scene1")
     /* -------------------- 11. FILTERS -------------------- */
     .set("#ui-filters", { visibility: "visible", y: 50 }, "-=3")
     .to("#ui-filters", { opacity: 1, y: 0, duration: 1, ease: "back.out" }, "<")
-    .to("#station-2 .core", { scale: 1.5, fill: "#22C55E", duration: 0.5, yoyo: true, repeat: 3 }, "-=1")
+    .to("#station-2 .core", { scale: 1.5, fill: "#10B981", duration: 0.5, yoyo: true, repeat: 3 }, "-=1")
 
     .to(".ev-car", { rotation: 0, duration: 1, ease: "power1.inOut" }, "-=1")
 
@@ -148,7 +148,7 @@ masterTl.addLabel("scene1")
 
     .add("charge-fill", "cable-draw+=1.0")
     .to(".charge-progress-bar .fill", { width: "100%", duration: 3, ease: "power1.inOut" }, "charge-fill")
-    .to(".battery-level .fill", { width: "100%", backgroundColor: "#22C55E", duration: 3, ease: "power1.inOut" }, "charge-fill")
+    .to(".battery-level .fill", { width: "100%", backgroundColor: "#10B981", duration: 3, ease: "power1.inOut" }, "charge-fill")
     .to(".battery-text", { innerHTML: "100%", duration: 3, snap: "innerHTML" }, "charge-fill")
 
     .to("#ui-charging", { opacity: 0, x: -50, duration: 1 }, "+=1")
